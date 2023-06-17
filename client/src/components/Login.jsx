@@ -8,7 +8,7 @@ const Login = () => {
       async function registerUser(e) {
         e.preventDefault();
         const response = await fetch(
-          "hhttps://pi-sell.vercel.app/api/register",
+          "https://pi-sell-git-main-jagdish0809.vercel.app/api/register",
           {
             method: "POST",
             headers: {
