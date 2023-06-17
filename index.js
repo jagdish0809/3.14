@@ -14,7 +14,7 @@ mongoose
     console.log("💕 DB connected");
   });
 
-app.post("https://pi-sell.vercel.app/api/register", async (req, res) => {
+app.post("/api/register", async (req, res) => {
   console.log(req.body);
   try {
     const user = await User.create({
