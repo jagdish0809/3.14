@@ -8,7 +8,7 @@ const Login = () => {
       async function registerUser(e) {
         e.preventDefault();
         const response = await fetch(
-          "https://uninterested-ruby-giraffe.cyclic.app/api/register",
+          "/api/register",
           {
             method: "POST",
             headers: {

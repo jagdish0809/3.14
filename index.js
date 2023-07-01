@@ -8,12 +8,12 @@ require("dotenv").config();
 app.use(cors());
 app.use(express.json());
 
-const port = process.env.PORT || 8080;
+const PORT = process.env.port || 8080;
 mongoose
   .connect(process.env.URI)
   .then(() => {
-    app.listen(port, () => {
-      console.log(`🚀 Server ready at port ${port}`);
+    app.listen(PORT, () => {
+      console.log(`🚀 Server ready at port ${PORT}`);
     });
     console.log("💕 DB connected");
   });
@@ -43,13 +43,23 @@ app.post("/api/register", async (req, res) => {
 //   }
 // });
 
-if(process.env.NODE_ENV=='production'){
-  const path = require('path')
+// if(process.env.NODE_ENV=='production'){
+//   const path = require('path')
 
-  app.get('/', (req,res)=>{
-    app.use(express.static(path.resolve(__dirname, "client", "build")));
-    res.sendFile(path.resolve(__dirname,'client','build','index.html'))
-  })
-}
+//   app.get('/', (req,res)=>{
+//     app.use(express.static(path.resolve(__dirname, "client", "build")));
+//     res.sendFile(path.resolve(__dirname,'client','build','index.html'))
+//   })
+// }
+
+app.use(express.static(path.join(__dirname, "./client/build")));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "./client/build/index.html"),
+  function (err) {
+    res.status(500).send(err);
+  }
+  );
+});
 
 
