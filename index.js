@@ -8,9 +8,13 @@ require("dotenv").config();
 app.use(cors());
 app.use(express.json());
 
+const port = process.env.PORT || 8080;
 mongoose
   .connect(process.env.URI)
   .then(() => {
+    app.listen(port, () => {
+      console.log(`🚀 Server ready at port ${port}`);
+    });
     console.log("💕 DB connected");
   });
 
@@ -38,7 +42,6 @@ app.post("/api/register", async (req, res) => {
 //     return res.json({ status: "error", user: false });
 //   }
 // });
-const port = process.env.PORT || 8080;
 
 if(process.env.NODE_ENV=='production'){
   const path = require('path')
@@ -49,6 +52,4 @@ if(process.env.NODE_ENV=='production'){
   })
 }
 
-app.listen(port, () => {
-  console.log(`🚀 Server ready at port ${port}`);
-});
+
