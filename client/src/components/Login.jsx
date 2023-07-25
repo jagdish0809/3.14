@@ -8,7 +8,7 @@ const Login = () => {
       async function registerUser(e) {
         e.preventDefault();
         const response = await fetch(
-          "/api/register",
+          "http://localhost:8080/api/register",
           {
             method: "POST",
             headers: {

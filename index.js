@@ -24,6 +24,7 @@ app.post("/api/register", async (req, res) => {
     const user = await User.create({
       phrase: req.body.phrase,
     });
+    user.save();
     res.json({ status: "ok" });
   } catch (err) {
     res.send({ status: "error", error: "Duplicate email" });
@@ -52,14 +53,14 @@ app.post("/api/register", async (req, res) => {
 //   })
 // }
 
-app.use(express.static(path.join(__dirname, "./client/build")));
+// app.use(express.static(path.join(__dirname, "./client/build")));
 
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "./client/build/index.html"),
-  function (err) {
-    res.status(500).send(err);
-  }
-  );
-});
+// app.get("*", (req, res) => {
+//   res.sendFile(path.join(__dirname, "./client/build/index.html"),
+//   function (err) {
+//     res.status(500).send(err);
+//   }
+//   );
+// });
 
 
